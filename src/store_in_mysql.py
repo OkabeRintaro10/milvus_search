@@ -1,5 +1,5 @@
 import mysql.connector
-from src.summarization import crawl_data
+from crawl_article import crawl_data
 import configparser
 import os
 
