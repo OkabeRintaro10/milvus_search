@@ -1,5 +1,5 @@
 from transformers import pipeline  # Import the summarization pipeline from transformers
-from src.crawl_article import (
+from crawl_article import (
     crawl_data,
 )  # Import the crawled data from the crawl_article module
 
