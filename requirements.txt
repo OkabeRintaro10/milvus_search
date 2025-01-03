@@ -1,0 +1,18 @@
+# Web Scraping
+beautifulsoup4
+requests
+
+# MySQL Database
+mysql-connector-python
+
+# Vector Database (Milvus)
+pymilvus
+
+# Text Processing and Summarization
+transformers
+nltk
+sentence-transformers
+spacy
+
+# Logging and Utilities
+configparser
