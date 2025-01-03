@@ -11,7 +11,29 @@ from sentence_transformers import (
     SentenceTransformer,
 )  # Import SentenceTransformer for text embeddings
 from crawl_article import crawl_data
+import configparser
+import os
 
+def get_db_config(config_file="../config.ini"):
+    """Retrieves the database configuration from a config.ini file."""
+    config = configparser.ConfigParser()
+    if not os.path.exists(config_file):
+        raise FileNotFoundError(f"Config file not found: {config_file}")
+    config.read(config_file)
+
+    if "mysql" not in config:
+        raise ValueError("Section 'database' not found in config file.")
+
+    try:
+        db_config = {
+            "host": config.get("mysql", "host"),
+            "user": config.get("mysql", "user"),
+            "password": config.get("mysql", "password"),
+            "database": config.get("mysql", "database"),  # Added database name
+        }
+        return db_config
+    except configparser.NoOptionError as e:
+        raise ValueError(f"Missing option in database config: {e}")
 
 def embed_and_store(data, db_config):
     """Embed titles and store them in Milvus."""
@@ -95,4 +117,4 @@ def embed_and_store(data, db_config):
             mydb.close()
 
 
-embed_and_store(crawl_data)
+embed_and_store(crawl_data, db_config = get_db_config())
