@@ -10,7 +10,7 @@ import json  # Import json for working with JSON data
 from sentence_transformers import (
     SentenceTransformer,
 )  # Import SentenceTransformer for text embeddings
-from src.summarization import crawl_data
+from crawl_article import crawl_data
 
 
 def embed_and_store(data, db_config):
